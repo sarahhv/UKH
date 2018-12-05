@@ -1,0 +1,146 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+}
+
+$green: #006666;
+
+main {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #333;
+    font-size: 1em;
+    background-color: #FAFAFA;
+    width: 80vw;
+    margin: 1.6rem auto;
+    max-width: 42rem;
+    text-align: center;
+}
+
+#v-cal {
+    background-color: #fff;
+    border-radius: 0;
+    border: 1px solid #e7e9ed;
+    box-shadow: 0 4px 22px 0 rgba(0, 0, 0, .05);
+    margin: 0 auto;
+    overflow: hidden;
+    width: 100%;
+
+    .vcal-header {
+        align-items: center;
+        display: flex;
+        padding: 1.2rem 1.4rem;
+        background-color: black;
+
+        .vcal-header__label {
+            font-weight: bold;
+            text-align: center;
+            width: 50%;
+            color: #ffffff;
+        }
+
+        button:focus {
+            background-color: $green;
+        }
+
+        .vcal-btn {
+            background: none;
+            border: 0;
+            color: inherit;
+            cursor: pointer;
+            font: inherit;
+            line-height: normal;
+            min-width: 27px;
+            outline: none;
+            overflow: visible;
+            padding: 0;
+            text-align: center;
+    
+            i {
+                color: white;
+            }
+        }
+
+        .vcal-btns {
+            background: none;
+            border: 1px solid white;
+            color: white;
+            cursor: pointer;
+            font: inherit;
+            padding: 2px;
+            margin: 2px;
+            text-align: center;
+            width: 20%;
+        }  
+    }
+
+    .vcal-week {
+        background-color: #fff;
+        border-bottom: solid 0.4px black;
+        display: flex;
+        flex-wrap: wrap;
+
+        span {
+            flex-direction: column;
+            flex: 0 0 14.28%;
+            font-size: 1em;
+            font-weight: bold;
+            max-width: 14.28%;
+            padding: 1.2rem 1.4rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+
+    .vcal-body {
+        display: flex;
+        background-color: rgba(231, 233, 237, .3);
+        flex-wrap: wrap
+    }
+
+    .vcal-date {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        flex-direction: column;
+        flex: 0 0 14.28%;
+        max-width: 14.28%;
+        padding: 1.2rem 0;
+    }
+
+    .vcal-date--active {
+        cursor: pointer;
+    }
+
+    .vcal-date--today {
+        background-color: $green;
+        color: #fff;
+    }
+
+    .vcal-date--selected {
+        color: #333;
+        outline: #707070 solid 2px;
+        outline-offset: -2px;
+        /* https://stackoverflow.com/questions/41590469/how-to-create-a-inner-border-for-a-box-in-html/41590707 */
+    }
+
+    .vcal-date--disabled {
+        cursor: not-allowed;
+        opacity: .5;
+    }
+    
+    .testBox {
+        margin: 1.2rem 1.4rem;
+        text-align: left;
+
+        .reserver {
+            background-color: white;
+            padding: 1%;
+            outline: #707070 1px solid;
+            outline-offset: -2px;
+        }
+    }
+}
+
+/*  Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ */
