@@ -33,7 +33,7 @@ main {
     .vcal-header {
         align-items: center;
         display: flex;
-        padding: 1.2rem 1.4rem;
+        padding: 5% 2%;
         background-color: black;
 
         .vcal-header__label {
@@ -43,8 +43,8 @@ main {
             color: #ffffff;
         }
 
-        button:focus {
-            background-color: $green;
+        #vcal-header__label {
+            width: 100%;
         }
 
         .vcal-btn {
@@ -75,6 +75,10 @@ main {
             margin: 2px;
             text-align: center;
             width: 20%;
+
+            button:focus {
+                background-color: $green;
+            }
         }  
     }
 
@@ -87,10 +91,10 @@ main {
         span {
             flex-direction: column;
             flex: 0 0 14.28%;
-            font-size: 1em;
+            font-size: 0.8em;
             font-weight: bold;
             max-width: 14.28%;
-            padding: 1.2rem 1.4rem;
+            padding: 5% 2%;
             text-align: center;
             text-transform: uppercase;
         }

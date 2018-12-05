@@ -27,15 +27,15 @@ main {
   #v-cal .vcal-header {
     align-items: center;
     display: flex;
-    padding: 1.2rem 1.4rem;
+    padding: 5% 2%;
     background-color: black; }
     #v-cal .vcal-header .vcal-header__label {
       font-weight: bold;
       text-align: center;
       width: 50%;
       color: #ffffff; }
-    #v-cal .vcal-header button:focus {
-      background-color: #006666; }
+    #v-cal .vcal-header #vcal-header__label {
+      width: 100%; }
     #v-cal .vcal-header .vcal-btn {
       background: none;
       border: 0;
@@ -60,6 +60,8 @@ main {
       margin: 2px;
       text-align: center;
       width: 20%; }
+      #v-cal .vcal-header .vcal-btns button:focus {
+        background-color: #006666; }
   #v-cal .vcal-week {
     background-color: #fff;
     border-bottom: solid 0.4px black;
@@ -68,10 +70,10 @@ main {
     #v-cal .vcal-week span {
       flex-direction: column;
       flex: 0 0 14.28%;
-      font-size: 1em;
+      font-size: 0.8em;
       font-weight: bold;
       max-width: 14.28%;
-      padding: 1.2rem 1.4rem;
+      padding: 5% 2%;
       text-align: center;
       text-transform: uppercase; }
   #v-cal .vcal-body {
