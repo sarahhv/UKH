@@ -8,6 +8,15 @@ var vanillaCalendar = {
     todaysDate: new Date,
     init: function (t) {
         this.options = t, this.date.setDate(1), this.createMonth(), this.createListeners()
+
+        var dateOptions = {
+            weekday: 'short',
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric'
+        }
+
+        document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = this.todaysDate.toLocaleDateString('da-DK', dateOptions)
     },
     createListeners: function () {
         var t = this;
@@ -29,16 +38,25 @@ var vanillaCalendar = {
     dateClicked: function () {
         var t = this;
         this.activeDates = document.querySelectorAll('[data-calendar-status="active"]');
-        for (var e = 0; e < this.activeDates.length; e++) this.activeDates[e].addEventListener("click", function (e) {
-            document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = this.dataset.calendarDate, t.removeActiveClass(), this.classList.add("vcal-date--selected")
-        })
+        for (var e = 0; e < this.activeDates.length; e++) {
+            this.activeDates[e].addEventListener("click", function (e) {
+                var dateString = new Date(this.dataset.calendarDate);
+                var options = {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric'
+                }
+                document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = dateString.toLocaleDateString('da-DK', options), t.removeActiveClass(), this.classList.add("vcal-date--selected")
+            })
+        }
     },
     createMonth: function () {
         for (var t = this.date.getMonth(); this.date.getMonth() === t;) this.createDay(this.date.getDate(), this.date.getDay(), this.date.getFullYear()), this.date.setDate(this.date.getDate() + 1);
         this.date.setDate(1), this.date.setMonth(this.date.getMonth() - 1), this.label.innerHTML = this.monthsAsString(this.date.getMonth()) + " " + this.date.getFullYear(), this.dateClicked()
     },
     monthsAsString: function (t) {
-        return ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][t]
+        return ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"][t]
     },
     clearCalendar: function () {
         vanillaCalendar.month.innerHTML = ""

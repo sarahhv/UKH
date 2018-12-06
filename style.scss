@@ -70,11 +70,11 @@ main {
             margin: 2px;
             text-align: center;
             width: 20%;
+        } 
 
-            button:focus {
-                background-color: $green;
-            }
-        }  
+        .vcal-btns:focus {
+            background-color: $green;
+        }
     }
 
     .vcal-week {
@@ -142,7 +142,12 @@ main {
             outline: #707070 1px solid;
             outline-offset: -2px;
         }
-    }
+
+        .reserver:focus {
+            background-color: $green;
+        }
+    } 
 }
+
 
 /*  Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ */
