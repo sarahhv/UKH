@@ -1,0 +1,62 @@
+html {
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+body {
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+  background-color: #006666;
+}
+
+/*MODAL BOX*/
+.reservationModal {
+  margin: 2rem auto;
+  max-width: 35rem;
+  text-align: center;
+  background-color: #fff
+}
+
+.indhold {
+  padding: 20px;
+  border: 1px solid;
+}
+.indhold p {
+  margin: 0.5rem auto;
+}
+
+.book-info time {
+  display: block;
+  font-weight: bold;
+}
+
+
+.fillOut {
+  width: 80%;
+  padding: 0.7rem;
+  margin: 0.6rem;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.formular textarea {
+  display: block;
+  margin: 10px auto;
+  resize: none;
+}
+
+.confirm {
+  border-style: none;
+  border: 2px #4d4d4d solid;
+  background-color: #fff;
+  padding: 4px;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.modalLuk {
+  margin: -10px -12px auto auto;
+  background-color: #000000;
+  color: #fff;
+  float: right;
+  font-size: 30px;
+  border: none;
+}
