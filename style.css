@@ -99,6 +99,8 @@ main {
   #v-cal .testBox {
     margin: 1.2rem 1.4rem;
     text-align: left; }
+    #v-cal .testBox input {
+      width: 20%; }
     #v-cal .testBox .reserver {
       background-color: white;
       padding: 1%;
