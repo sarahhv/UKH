@@ -2,6 +2,7 @@ var vanillaCalendar = {
     month: document.querySelectorAll('[data-calendar-area="month"]')[0],
     next: document.querySelectorAll('[data-calendar-toggle="next"]')[0],
     previous: document.querySelectorAll('[data-calendar-toggle="previous"]')[0],
+    today: document.querySelectorAll('[data-calendar-toggle="today"]')[0],
     label: document.querySelectorAll('[data-calendar-label="month"]')[0],
     activeDates: null,
     date: new Date,
@@ -24,9 +25,15 @@ var vanillaCalendar = {
             t.clearCalendar();
             var e = t.date.getMonth() + 1;
             t.date.setMonth(e), t.createMonth()
-        }), this.previous.addEventListener("click", function () {
+        }), 
+        this.previous.addEventListener("click", function () {
             t.clearCalendar();
             var e = t.date.getMonth() - 1;
+            t.date.setMonth(e), t.createMonth()
+        }), 
+        this.today.addEventListener("click", function () {
+            t.clearCalendar();
+            var e = t.date.getMonth();
             t.date.setMonth(e), t.createMonth()
         })
     },
