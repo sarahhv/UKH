@@ -7,14 +7,17 @@
     <title>UKH Booking</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Amalie, Sarah">
+    <!-- Fontawesome.com -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
-    <!-- Fontawesome.com -->
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Eget stylesheet -->
     <link rel="stylesheet" type="text/css" media="screen" href="style.min.css" />
 </head>
 
 <body>
-    <main>
+    <main class="calendar">
         <div id="v-cal">
             <div class="vcal-header">
                 <button class="vcal-btn" data-calendar-toggle="previous">
@@ -31,9 +34,6 @@
 
                 <button class="vcal-btns" data-calendar-toggle="today">
                     I dag
-                </button>
-                <button class="vcal-btns" data-calendar-toggle="week">
-                    Uge
                 </button>
             </div>
 
@@ -57,10 +57,38 @@
             <div class="testBox">
                 Fra: <input type="time" name="time">
                 Til: <input type="time" name="time">
-                <button class="reserver">Reserver</button>
+                <button class="reserver" id="reserver">Reserver</button>
             </div>
         </div>
     </main>
+
+    <main class="reservationModal" id="modal">
+        <div class="modal-content">
+            <article>
+                <header>
+                    <button class="modalLuk">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </header>
+                <section class="indhold">
+                    <div class="book-info">
+                        <p>Du er nu I gang med at booke tid til den:</p>
+                        <time datetime="">Dag d.dd mån.</time>
+                        <time datetime="">Kl. Tid-Tid</time>
+                        <p>Udfyld formen og vi vender tilbage hurtigst muligt med svar</p>
+                    </div>
+                    <form class="formular" id="myForm" action="" method="post">
+                        <input type="text" class="fillOut" name="fullname" placeholder="Name"><br>
+                        <input type="text" class="fillOut" name="email" placeholder="Email"><br>
+                        <textarea class="fillOut" type="text" name="comment" rows="5" placeholder="Her kan du skrive en besked hvis du har nogen spørgsmål eller tilføjelser til bookningen"></textarea>
+                        <input type="submit" value="Bekræft" class="confirm">
+                    </form>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <div id="overlay"></div>
 
     <script>
         window.addEventListener('load', function () {
@@ -75,7 +103,7 @@
     <!-- Jquery library -->
     <script src="jquery-3.3.1.min.js"></script>
     <!-- Eget script -->
-    <script src="script.min.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript"></script>
 </body>
 
 </html>

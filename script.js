@@ -67,11 +67,43 @@ var vanillaCalendar = {
         return ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"][t]
     },
     clearCalendar: function () {
-        vanillaCalendar.month.innerHTML = ""
+        vanillaCalendar.month.innerHTML = "";
     },
     removeActiveClass: function () {
         for (var t = 0; t < this.activeDates.length; t++) this.activeDates[t].classList.remove("vcal-date--selected")
     }
 };
 /*  Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ */
+
+/* FRONTPAGE-BUTTONS */
+var btnReserver = document.getElementById("reserver");
+
+btnReserver.addEventListener('click', () => {
+    document.getElementById("modal").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+});
+
+//MODAL BOX JS
+// Close botton modal
+var btnLuk = document.getElementsByClassName("modalLuk")[0];
+
+// When the user clicks on class="modalLuk", close the modal
+btnLuk.addEventListener('click', () => {
+    document.getElementById("modal").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+});
+
+// When the user clicks anywhere outside of the modal, close it
+window.addEventListener('click', () => {
+    if (event.target == modal) {
+        modalFridge.style.display = "none";
+    }
+});
+
+//FORMULAR 
+document.getElementById("myForm").onsubmit = function() {submitted()};
+function submitted() {
+    alert("The form was submitted");
+};
+
 
