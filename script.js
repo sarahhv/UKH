@@ -1,3 +1,4 @@
+/* Kalenderen og dens system/funktionalitet */
 var vanillaCalendar = {
     month: document.querySelectorAll('[data-calendar-area="month"]')[0],
     next: document.querySelectorAll('[data-calendar-toggle="next"]')[0],
@@ -72,5 +73,5 @@ var vanillaCalendar = {
         for (var t = 0; t < this.activeDates.length; t++) this.activeDates[t].classList.remove("vcal-date--selected")
     }
 };
-
 /*  Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ */
+
