@@ -5,11 +5,15 @@ var vanillaCalendar = {
     previous: document.querySelectorAll('[data-calendar-toggle="previous"]')[0],
     today: document.querySelectorAll('[data-calendar-toggle="today"]')[0],
     label: document.querySelectorAll('[data-calendar-label="month"]')[0],
+    currentMonth: null,
+    currentYear: null,
     activeDates: null,
     date: new Date,
     todaysDate: new Date,
     init: function (t) {
-        this.options = t, this.date.setDate(1), this.createMonth(), this.createListeners()
+        this.currentMonth = this.date.getMonth();
+        this.currentYear = this.date.getFullYear();
+        this.options = t, this.date.setDate(1), this.createMonth(), this.createListeners();
 
         var dateOptions = {
             weekday: 'short',
@@ -18,30 +22,46 @@ var vanillaCalendar = {
             day: 'numeric'
         }
 
-        document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = this.todaysDate.toLocaleDateString('da-DK', dateOptions)
+        document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = this.todaysDate.toLocaleDateString('da-DK', dateOptions);
     },
     createListeners: function () {
         var t = this;
         this.next.addEventListener("click", function () {
-            t.clearCalendar();
-            var e = t.date.getMonth() + 1;
-            t.date.setMonth(e), t.createMonth()
-        }), 
-        this.previous.addEventListener("click", function () {
-            t.clearCalendar();
-            var e = t.date.getMonth() - 1;
-            t.date.setMonth(e), t.createMonth()
-        }), 
-        this.today.addEventListener("click", function () {
-            t.clearCalendar();
-            var e = t.date.getMonth();
-            t.date.setMonth(e), t.createMonth()
-        })
+                t.clearCalendar();
+                var e = t.date.getMonth() + 1;
+                t.date.setMonth(e), t.createMonth()
+            }),
+            this.previous.addEventListener("click", function () {
+                t.clearCalendar();
+                var e = t.date.getMonth() - 1;
+                t.date.setMonth(e), t.createMonth()
+            }),
+            this.today.addEventListener("click", function () {
+                t.clearCalendar();
+                t.date.setMonth(t.currentMonth);
+                t.date.setFullYear(t.currentYear);
+                t.createMonth();
+                var dateOptions = {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric'
+                }
+
+                document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = t.todaysDate.toLocaleDateString('da-DK', dateOptions)
+            })
     },
     createDay: function (t, e, a) {
+        /* 
+         Jeg har en idé om at der måske skal en
+         enkelt kildehevisning til det her. 
+         This be complicated, here be dragons...
+        */
         var n = document.createElement("div"),
             s = document.createElement("span");
-        s.innerHTML = t, n.className = "vcal-date", n.setAttribute("data-calendar-date", this.date), 1 === t && (n.style.marginLeft = 0 === e ? 6 * 14.28 + "%" : 14.28 * (e - 1) + "%"), this.options.disablePastDays && this.date.getTime() <= this.todaysDate.getTime() - 1 ? n.classList.add("vcal-date--disabled") : (n.classList.add("vcal-date--active"), n.setAttribute("data-calendar-status", "active")), this.date.toString() === this.todaysDate.toString() && n.classList.add("vcal-date--today"), n.appendChild(s), this.month.appendChild(n)
+        s.innerHTML = t, n.className = "vcal-date", n.setAttribute("data-calendar-date", this.date),
+    /* 1 === t && osv. Det der sker i denne sætning er hvis e er = 0 så skal beregningen mellem ? og : udføres, ellers skal det efter : udføres */
+                 1 === t && (n.style.marginLeft = 0 === e ? 6 * 14.28 + "%" : 14.28 * (e - 1) + "%"), this.options.disablePastDays && this.date.getTime() <= this.todaysDate.getTime() - 1 ? n.classList.add("vcal-date--disabled") : (n.classList.add("vcal-date--active"), n.setAttribute("data-calendar-status", "active")), this.date.toString() === this.todaysDate.toString() && n.classList.add("vcal-date--today"), n.appendChild(s), this.month.appendChild(n)
     },
     dateClicked: function () {
         var t = this;
@@ -60,8 +80,16 @@ var vanillaCalendar = {
         }
     },
     createMonth: function () {
-        for (var t = this.date.getMonth(); this.date.getMonth() === t;) this.createDay(this.date.getDate(), this.date.getDay(), this.date.getFullYear()), this.date.setDate(this.date.getDate() + 1);
-        this.date.setDate(1), this.date.setMonth(this.date.getMonth() - 1), this.label.innerHTML = this.monthsAsString(this.date.getMonth()) + " " + this.date.getFullYear(), this.dateClicked()
+        for (var t = this.date.getMonth(); this.date.getMonth() === t;) {
+            this.createDay(this.date.getDate(), this.date.getDay(), this.date.getFullYear()), this.date.setDate(this.date.getDate() + 1);
+        }
+        this.date.setDate(1);
+        this.date.setMonth(
+            this.date.getMonth() - 1
+        ); 
+        this.label.innerHTML = 
+            this.monthsAsString(this.date.getMonth()) + " " + this.date.getFullYear();
+        this.dateClicked();
     },
     monthsAsString: function (t) {
         return ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"][t]
@@ -70,7 +98,8 @@ var vanillaCalendar = {
         vanillaCalendar.month.innerHTML = "";
     },
     removeActiveClass: function () {
-        for (var t = 0; t < this.activeDates.length; t++) this.activeDates[t].classList.remove("vcal-date--selected")
+        for (var t = 0; t < this.activeDates.length; t++)
+            this.activeDates[t].classList.remove("vcal-date--selected")
     }
 };
 /*  Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ */
@@ -101,9 +130,10 @@ window.addEventListener('click', () => {
 });
 
 //FORMULAR 
-document.getElementById("myForm").onsubmit = function() {submitted()};
+document.getElementById("myForm").onsubmit = function () {
+    submitted()
+};
+
 function submitted() {
     alert("The form was submitted");
 };
-
-
