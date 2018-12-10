@@ -141,8 +141,10 @@ function submitted() {
 document.getElementById('reserver').addEventListener('click', () => {
     var fra = document.getElementById('fra').value;
     var til = document.getElementById('til').value;
+    var dato = document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML;
 
     document.getElementById('rFra').innerHTML = fra;
     document.getElementById('rTil').innerHTML = til;
-
+    document.getElementById('dato').innerHTML = dato;
+    console.log(dato);
 });
