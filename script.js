@@ -104,20 +104,15 @@ var vanillaCalendar = {
 };
 /*  Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ */
 
-/* FRONTPAGE-BUTTONS */
-var btnReserver = document.getElementById("reserver");
-
-btnReserver.addEventListener('click', () => {
+/* Reserver knappen - der åbner modal box og overlayer */
+document.getElementById("reserver").addEventListener('click', () => {
     document.getElementById("modal").style.display = "block";
     document.getElementById("overlay").style.display = "block";
 });
 
 //MODAL BOX JS
-// Close botton modal
-var btnLuk = document.getElementsByClassName("modalLuk")[0];
-
 // When the user clicks on class="modalLuk", close the modal
-btnLuk.addEventListener('click', () => {
+document.getElementsByClassName("modalLuk")[0].addEventListener('click', () => {
     document.getElementById("modal").style.display = "none";
     document.getElementById("overlay").style.display = "none";
 });
@@ -130,14 +125,11 @@ window.addEventListener('click', () => {
 });
 
 //FORMULAR 
-document.getElementById("myForm").onsubmit = function () {
-    submitted()
-};
-
-function submitted() {
+document.getElementById("myForm").onsubmit = () => {
     alert("The form was submitted");
 };
 
+/* Klokkeslet og dato bliver sendt videre over i modalboxen */
 document.getElementById('reserver').addEventListener('click', () => {
     var fra = document.getElementById('fra').value;
     var til = document.getElementById('til').value;
@@ -146,5 +138,4 @@ document.getElementById('reserver').addEventListener('click', () => {
     document.getElementById('rFra').innerHTML = fra;
     document.getElementById('rTil').innerHTML = til;
     document.getElementById('dato').innerHTML = dato;
-    console.log(dato);
 });
