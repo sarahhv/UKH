@@ -92,6 +92,20 @@
 
     <div id="overlay"></div>
 
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB8_DdsPPANurfLtpXb0nn-4aJLW9_SnTM",
+            authDomain: "booking-system-c6e4c.firebaseapp.com",
+            databaseURL: "https://booking-system-c6e4c.firebaseio.com",
+            projectId: "booking-system-c6e4c",
+            storageBucket: "",
+            messagingSenderId: "767495114891"
+        };
+        firebase.initializeApp(config);
+    </script>
+
     <script>
         window.addEventListener('load', function () {
             vanillaCalendar.init({
