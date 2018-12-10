@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    <!-- Kalenderen -->
     <main class="calendar">
         <div id="v-cal">
             <div class="vcal-header">
@@ -61,7 +62,9 @@
             </div>
         </div>
     </main>
+    <!-- Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ -->
 
+    <!-- Modalbox reservation -->
     <main class="reservationModal" id="modal">
         <div class="modal-content">
             <article>
@@ -92,30 +95,8 @@
 
     <div id="overlay"></div>
 
+    <!-- Firebase library -->
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyB8_DdsPPANurfLtpXb0nn-4aJLW9_SnTM",
-            authDomain: "booking-system-c6e4c.firebaseapp.com",
-            databaseURL: "https://booking-system-c6e4c.firebaseio.com",
-            projectId: "booking-system-c6e4c",
-            storageBucket: "",
-            messagingSenderId: "767495114891"
-        };
-        firebase.initializeApp(config);
-    </script>
-
-    <script>
-        window.addEventListener('load', function () {
-            vanillaCalendar.init({
-                disablePastDays: true
-            });
-        })
-    </script>
-
-    <!-- Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ -->
-
     <!-- Jquery library -->
     <script src="jquery-3.3.1.min.js"></script>
     <!-- Eget script -->
