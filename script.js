@@ -125,9 +125,9 @@ window.addEventListener('click', () => {
 });
 
 //FORMULAR 
-document.getElementById("myForm").onsubmit = () => {
+document.getElementById("confirm").addEventListener('click', () => {
     alert("The form was submitted");
-};
+});
 
 /* Klokkeslet og dato bliver sendt videre over i modalboxen */
 document.getElementById('reserver').addEventListener('click', () => {
