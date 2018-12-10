@@ -60,8 +60,8 @@ var vanillaCalendar = {
         var n = document.createElement("div"),
             s = document.createElement("span");
         s.innerHTML = t, n.className = "vcal-date", n.setAttribute("data-calendar-date", this.date),
-    /* 1 === t && osv. Det der sker i denne sætning er hvis e er = 0 så skal beregningen mellem ? og : udføres, ellers skal det efter : udføres */
-                 1 === t && (n.style.marginLeft = 0 === e ? 6 * 14.28 + "%" : 14.28 * (e - 1) + "%"), this.options.disablePastDays && this.date.getTime() <= this.todaysDate.getTime() - 1 ? n.classList.add("vcal-date--disabled") : (n.classList.add("vcal-date--active"), n.setAttribute("data-calendar-status", "active")), this.date.toString() === this.todaysDate.toString() && n.classList.add("vcal-date--today"), n.appendChild(s), this.month.appendChild(n)
+            /* 1 === t && osv. Det der sker i denne sætning er hvis e er = 0 så skal beregningen mellem ? og : udføres, ellers skal det efter : udføres */
+            1 === t && (n.style.marginLeft = 0 === e ? 6 * 14.28 + "%" : 14.28 * (e - 1) + "%"), this.options.disablePastDays && this.date.getTime() <= this.todaysDate.getTime() - 1 ? n.classList.add("vcal-date--disabled") : (n.classList.add("vcal-date--active"), n.setAttribute("data-calendar-status", "active")), this.date.toString() === this.todaysDate.toString() && n.classList.add("vcal-date--today"), n.appendChild(s), this.month.appendChild(n)
     },
     dateClicked: function () {
         var t = this;
@@ -86,8 +86,8 @@ var vanillaCalendar = {
         this.date.setDate(1);
         this.date.setMonth(
             this.date.getMonth() - 1
-        ); 
-        this.label.innerHTML = 
+        );
+        this.label.innerHTML =
             this.monthsAsString(this.date.getMonth()) + " " + this.date.getFullYear();
         this.dateClicked();
     },
@@ -117,17 +117,28 @@ document.getElementsByClassName("modalLuk")[0].addEventListener('click', () => {
     document.getElementById("overlay").style.display = "none";
 });
 
-// When the user clicks anywhere outside of the modal, close it
-window.addEventListener('click', () => {
-    if (event.target == modal) {
-        modalFridge.style.display = "none";
-    }
+
+
+//BKRÆFT 
+document.getElementById("confirm").addEventListener('click', () => {
+    var navn = document.querySelector("#myForm [name=fullname]").value;
+    var email = document.querySelector("#myForm [name=email]").value;
+    var besked = document.querySelector("#myForm [name=comment]").value;
+
+    var fra = document.getElementById('fra').value;
+    var til = document.getElementById('til').value;
+    var dato = document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML;
+
+    firebase.database().ref('reservationer').push({
+        navn: navn,
+        email: email,
+        besked: besked,
+        dato: dato,
+        fra: fra,
+        til: til
+    });
 });
 
-//FORMULAR 
-document.getElementById("confirm").addEventListener('click', () => {
-    alert("The form was submitted");
-});
 
 /* Klokkeslet og dato bliver sendt videre over i modalboxen */
 document.getElementById('reserver').addEventListener('click', () => {
