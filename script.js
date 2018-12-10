@@ -137,3 +137,12 @@ document.getElementById("myForm").onsubmit = function () {
 function submitted() {
     alert("The form was submitted");
 };
+
+document.getElementById('reserver').addEventListener('click', () => {
+    var fra = document.getElementById('fra').value;
+    var til = document.getElementById('til').value;
+
+    document.getElementById('rFra').innerHTML = fra;
+    document.getElementById('rTil').innerHTML = til;
+
+});
