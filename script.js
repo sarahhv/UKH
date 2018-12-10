@@ -1,4 +1,9 @@
 /* Kalenderen og dens system/funktionalitet */
+window.addEventListener('load', function () {
+    vanillaCalendar.init({
+        disablePastDays: true
+    });
+})
 var vanillaCalendar = {
     month: document.querySelectorAll('[data-calendar-area="month"]')[0],
     next: document.querySelectorAll('[data-calendar-toggle="next"]')[0],
@@ -116,6 +121,17 @@ document.getElementsByClassName("modalLuk")[0].addEventListener('click', () => {
     document.getElementById("modal").style.display = "none";
     document.getElementById("overlay").style.display = "none";
 });
+
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB8_DdsPPANurfLtpXb0nn-4aJLW9_SnTM",
+            authDomain: "booking-system-c6e4c.firebaseapp.com",
+            databaseURL: "https://booking-system-c6e4c.firebaseio.com",
+            projectId: "booking-system-c6e4c",
+            storageBucket: "",
+            messagingSenderId: "767495114891"
+        };
+        firebase.initializeApp(config);
 
 
 
