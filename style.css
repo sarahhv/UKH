@@ -126,6 +126,9 @@ html {
   .reservationModal .indhold {
     padding: 20px;
     border: 1px solid; }
+    .reservationModal .indhold #dato {
+      font-weight: bold;
+      text-transform: capitalize; }
     .reservationModal .indhold p {
       margin: 0.5rem auto; }
     .reservationModal .indhold .indsatTid {
@@ -144,10 +147,11 @@ html {
     margin: 10px auto;
     resize: none; }
   .reservationModal .confirm {
-    border-style: none;
-    border: 2px #4d4d4d solid;
+    background-color: white;
+    outline: #707070 1px solid;
+    outline-offset: -2px;
     background-color: #fff;
-    padding: 4px;
+    padding: 1%;
     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
   .reservationModal .modalLuk {
     margin: -10px -12px auto auto;
