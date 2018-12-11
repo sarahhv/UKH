@@ -111,7 +111,7 @@ document.getElementById("reserver").addEventListener('click', () => {
 });
 
 //MODAL BOX JS
-// When the bEvent clicks on class="modalLuk", close the modal
+// When the user clicks on class="modalLuk", close the modal
 document.getElementsByClassName("modalLuk")[0].addEventListener('click', () => {
     document.getElementById("modal").style.display = "none";
     document.getElementById("overlay").style.display = "none";
@@ -131,9 +131,9 @@ document.getElementById('reserver').addEventListener('click', () => {
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyB8_DdsPPANurfLtpXb0nn-4aJLW9_SnTM",
-    authDomain: "bEvent-system-c6e4c.firebaseapp.com",
-    databaseURL: "https://bEvent-system-c6e4c.firebaseio.com",
-    projectId: "bEvent-system-c6e4c",
+    authDomain: "booking-system-c6e4c.firebaseapp.com",
+    databaseURL: "https://booking-system-c6e4c.firebaseio.com",
+    projectId: "booking-system-c6e4c",
     storageBucket: "",
     messagingSenderId: "767495114891"
 };
@@ -153,7 +153,7 @@ firebase.database().ref('reservationer').on('value', snapshots => {
         </article>
         `;
     });
-    document.querySelector(".bEvent").innerHTML = htmlTemplate;
+    document.querySelector(".booking").innerHTML = htmlTemplate;
   });
 
 //BEKRÆFT 
