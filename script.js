@@ -79,7 +79,6 @@ var vanillaCalendar = {
                     day: 'numeric'
                 }
                 selectedDate = dateString.toLocaleDateString('da-DK', options);
-                console.log(selectedDate);
                 document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = selectedDate, t.removeActiveClass(), this.classList.add("vcal-date--selected")
                 showEvents();
             })
@@ -110,10 +109,24 @@ var vanillaCalendar = {
 };
 /*  Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ */
 
-/* Reserver knappen - der åbner modal box og overlayer */
+/* Reserver knappen - der åbner modal box og overlayet*/
+/* Klokkeslet og datoer bliver ført med videre til modalboxen */
 document.getElementById("reserver").addEventListener('click', () => {
-    document.getElementById("modal").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
+    let time = document.querySelector(".testBox [type=time]");
+    if (!time.value) {
+        alert("Venligst indsæt start og slut tidspunkt");
+    } else {
+        document.getElementById("modal").style.display = "block";
+        document.getElementById("overlay").style.display = "block";
+
+        var fra = document.getElementById('fra').value;
+        var til = document.getElementById('til').value;
+        var dato = document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML;
+
+        document.getElementById('rFra').innerHTML = fra;
+        document.getElementById('rTil').innerHTML = til;
+        document.getElementById('dato').innerHTML = dato;
+    }
 });
 
 //MODAL BOX JS
@@ -121,17 +134,6 @@ document.getElementById("reserver").addEventListener('click', () => {
 document.getElementsByClassName("modalLuk")[0].addEventListener('click', () => {
     document.getElementById("modal").style.display = "none";
     document.getElementById("overlay").style.display = "none";
-});
-
-/* Klokkeslet og dato bliver sendt videre over i modalboxen */
-document.getElementById('reserver').addEventListener('click', () => {
-    var fra = document.getElementById('fra').value;
-    var til = document.getElementById('til').value;
-    var dato = document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML;
-
-    document.getElementById('rFra').innerHTML = fra;
-    document.getElementById('rTil').innerHTML = til;
-    document.getElementById('dato').innerHTML = dato;
 });
 
 // Initialize Firebase
@@ -152,7 +154,6 @@ firebase.database().ref('reservationer').on('value', snapshots => {
         let key = snapshot.key; // saves the key value in the variable key
         let bEvent = snapshot.val(); // saves the data in the variable bEvent
         bEvent.key = key; // addes the key to my bEvent object
-        console.log(bEvent);
         events.push(bEvent);
     });
     showEvents();
@@ -165,12 +166,11 @@ function showEvents() {
         var event = events[i];
 
         if (event.dato == selectedDate) {
-            console.log(event);
             htmlTemplate += `
-    <article class="gridItem" id="${event.key}">
-      <p class="name">${event.navn} ${event.fra} - ${event.til}</p>
-    </article>
-    `;
+            <p class="dagsEvent" id="${event.key}">
+            ${event.fra} - ${event.til}  ${event.navn}
+            </p>
+            `;
         }
     }
     document.querySelector(".booking").innerHTML = htmlTemplate;
@@ -186,12 +186,22 @@ document.getElementById("confirm").addEventListener('click', () => {
     var til = document.getElementById('til').value;
     var dato = document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML;
 
-    firebase.database().ref('reservationer').push({
-        navn: navn,
-        email: email,
-        besked: besked,
-        dato: dato,
-        fra: fra,
-        til: til
-    });
+    if (!navn) {
+        alert("Venligst indtast dit navn og din email");
+    } else if (!email) {
+        alert("Venligst indtast dit navn og din email");
+    } else {
+        firebase.database().ref('reservationer').push({
+            navn: navn,
+            email: email,
+            besked: besked,
+            dato: dato,
+            fra: fra,
+            til: til
+        });
+        document.getElementById("modal").style.display = "none";
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("fra").value = "";
+        document.getElementById("til").value = "";
+    }
 });

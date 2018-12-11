@@ -12,7 +12,8 @@ html {
   color: #333;
   width: 90vw;
   margin: 5% auto;
-  text-align: center; }
+  text-align: center;
+  text-transform: capitalize; }
 
 #v-cal {
   background-color: #fff;
@@ -30,7 +31,8 @@ html {
       font-weight: bold;
       text-align: center;
       width: 50%;
-      color: #ffffff; }
+      color: #ffffff;
+      font-size: 1.1rem; }
     #v-cal .vcal-header #vcal-header__label {
       width: 100%; }
     #v-cal .vcal-header .vcal-btn {
@@ -174,3 +176,8 @@ html {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   cursor: pointer; }
+
+.dagsEvent {
+  text-align: left;
+  padding: 0.2rem 1.4rem 0;
+  font-size: 1.3rem; }
