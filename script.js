@@ -128,6 +128,7 @@ document.getElementById('reserver').addEventListener('click', () => {
     document.getElementById('dato').innerHTML = dato;
 });
 
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyB8_DdsPPANurfLtpXb0nn-4aJLW9_SnTM",
@@ -139,6 +140,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
+// Data indsat i HTML
 firebase.database().ref('reservationer').on('value', snapshots => {
     let htmlTemplate = "";
     snapshots.forEach(snapshot => {
