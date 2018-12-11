@@ -1,5 +1,5 @@
 var selectedDate;
-var events=[];
+var events = [];
 
 /* Kalenderen og dens system/funktionalitet */
 window.addEventListener('load', function () {
@@ -147,32 +147,33 @@ firebase.initializeApp(config);
 
 //Data Indsættelse
 firebase.database().ref('reservationer').on('value', snapshots => {
-  events=[];
+    events = [];
     snapshots.forEach(snapshot => {
-      let key = snapshot.key; // saves the key value in the variable key
-      let bEvent = snapshot.val(); // saves the data in the variable bEvent
-      bEvent.key = key; // addes the key to my bEvent object
-      console.log(bEvent);
-      events.push(bEvent);
+        let key = snapshot.key; // saves the key value in the variable key
+        let bEvent = snapshot.val(); // saves the data in the variable bEvent
+        bEvent.key = key; // addes the key to my bEvent object
+        console.log(bEvent);
+        events.push(bEvent);
     });
     showEvents();
-  });
-function showEvents(){
-  document.querySelector(".booking").innerHTML = "";
-    let htmlTemplate = "";
-for (var i = 0; i <events.length; i++) {
-var event=events[i];
+});
 
-if (event.dato == selectedDate) {
-  console.log(event);
-  htmlTemplate += `
+function showEvents() {
+    document.querySelector(".booking").innerHTML = "";
+    let htmlTemplate = "";
+    for (var i = 0; i < events.length; i++) {
+        var event = events[i];
+
+        if (event.dato == selectedDate) {
+            console.log(event);
+            htmlTemplate += `
     <article class="gridItem" id="${event.key}">
       <p class="name">${event.navn} ${event.fra} - ${event.til}</p>
     </article>
     `;
-}
-}
-document.querySelector(".booking").innerHTML = htmlTemplate;
+        }
+    }
+    document.querySelector(".booking").innerHTML = htmlTemplate;
 }
 
 //BEKRÆFT
