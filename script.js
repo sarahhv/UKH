@@ -203,5 +203,8 @@ document.getElementById("confirm").addEventListener('click', () => {
         document.getElementById("overlay").style.display = "none";
         document.getElementById("fra").value = "";
         document.getElementById("til").value = "";
+        document.querySelector("#myForm [name=fullname]").value = "";
+        document.querySelector("#myForm [name=email]").value = "";
+        document.querySelector("#myForm [name=comment]").value = "";
     }
 });
