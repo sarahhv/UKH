@@ -6,11 +6,13 @@
 
 html {
   background-color: #006666;
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  max-width: 500px;
+  margin: auto; }
 
 .calendar {
   color: #333;
-  width: 90vw;
+  width: 90%;
   margin: 5% auto;
   text-align: center;
   text-transform: capitalize; }
@@ -101,7 +103,7 @@ html {
     cursor: not-allowed;
     opacity: .5; }
   #v-cal .testBox {
-    margin: 1.2rem 1.4rem;
+    margin: 1.2rem 1rem;
     text-align: left; }
     #v-cal .testBox input {
       width: 25%; }
@@ -112,6 +114,11 @@ html {
       outline-offset: -2px; }
     #v-cal .testBox .reserver:focus {
       background-color: #006666; }
+
+.dagsEvent {
+  text-align: left;
+  padding: 0.2rem 1rem 0;
+  font-size: 1.3rem; }
 
 /*MODAL BOX*/
 .reservationModal {
@@ -176,8 +183,3 @@ html {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
   cursor: pointer; }
-
-.dagsEvent {
-  text-align: left;
-  padding: 0.2rem 1.4rem 0;
-  font-size: 1.3rem; }
