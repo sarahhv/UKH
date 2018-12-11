@@ -57,11 +57,6 @@ var vanillaCalendar = {
             })
     },
     createDay: function (t, e, a) {
-        /* 
-         Jeg har en idé om at der måske skal en
-         enkelt kildehevisning til det her. 
-         This be complicated, here be dragons...
-        */
         var n = document.createElement("div"),
             s = document.createElement("span");
         s.innerHTML = t, n.className = "vcal-date", n.setAttribute("data-calendar-date", this.date),
@@ -116,24 +111,50 @@ document.getElementById("reserver").addEventListener('click', () => {
 });
 
 //MODAL BOX JS
-// When the user clicks on class="modalLuk", close the modal
+// When the bEvent clicks on class="modalLuk", close the modal
 document.getElementsByClassName("modalLuk")[0].addEventListener('click', () => {
     document.getElementById("modal").style.display = "none";
     document.getElementById("overlay").style.display = "none";
 });
 
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyB8_DdsPPANurfLtpXb0nn-4aJLW9_SnTM",
-            authDomain: "booking-system-c6e4c.firebaseapp.com",
-            databaseURL: "https://booking-system-c6e4c.firebaseio.com",
-            projectId: "booking-system-c6e4c",
-            storageBucket: "",
-            messagingSenderId: "767495114891"
-        };
-        firebase.initializeApp(config);
+/* Klokkeslet og dato bliver sendt videre over i modalboxen */
+document.getElementById('reserver').addEventListener('click', () => {
+    var fra = document.getElementById('fra').value;
+    var til = document.getElementById('til').value;
+    var dato = document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML;
+
+    document.getElementById('rFra').innerHTML = fra;
+    document.getElementById('rTil').innerHTML = til;
+    document.getElementById('dato').innerHTML = dato;
+});
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyB8_DdsPPANurfLtpXb0nn-4aJLW9_SnTM",
+    authDomain: "bEvent-system-c6e4c.firebaseapp.com",
+    databaseURL: "https://bEvent-system-c6e4c.firebaseio.com",
+    projectId: "bEvent-system-c6e4c",
+    storageBucket: "",
+    messagingSenderId: "767495114891"
+};
+firebase.initializeApp(config);
 
 
+firebase.database().ref('reservationer').on('value', snapshots => {
+    let htmlTemplate = "";
+    snapshots.forEach(snapshot => {
+      let key = snapshot.key; // saves the key value in the variable key
+      let bEvent = snapshot.val(); // saves the data in the variable bEvent
+      bEvent.key = key; // addes the key to my bEvent object
+      console.log(bEvent);
+      htmlTemplate += `
+        <article class="gridItem" id="${bEvent.key}">
+          <p class="name">${bEvent.navn} ${bEvent.fra} - ${bEvent.til}</p>
+        </article>
+        `;
+    });
+    document.querySelector(".bEvent").innerHTML = htmlTemplate;
+  });
 
 //BEKRÆFT 
 document.getElementById("confirm").addEventListener('click', () => {
@@ -153,16 +174,4 @@ document.getElementById("confirm").addEventListener('click', () => {
         fra: fra,
         til: til
     });
-});
-
-
-/* Klokkeslet og dato bliver sendt videre over i modalboxen */
-document.getElementById('reserver').addEventListener('click', () => {
-    var fra = document.getElementById('fra').value;
-    var til = document.getElementById('til').value;
-    var dato = document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML;
-
-    document.getElementById('rFra').innerHTML = fra;
-    document.getElementById('rTil').innerHTML = til;
-    document.getElementById('dato').innerHTML = dato;
 });
