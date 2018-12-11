@@ -122,16 +122,16 @@ document.getElementsByClassName("modalLuk")[0].addEventListener('click', () => {
     document.getElementById("overlay").style.display = "none";
 });
 
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyB8_DdsPPANurfLtpXb0nn-4aJLW9_SnTM",
-            authDomain: "booking-system-c6e4c.firebaseapp.com",
-            databaseURL: "https://booking-system-c6e4c.firebaseio.com",
-            projectId: "booking-system-c6e4c",
-            storageBucket: "",
-            messagingSenderId: "767495114891"
-        };
-        firebase.initializeApp(config);
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyB8_DdsPPANurfLtpXb0nn-4aJLW9_SnTM",
+    authDomain: "booking-system-c6e4c.firebaseapp.com",
+    databaseURL: "https://booking-system-c6e4c.firebaseio.com",
+    projectId: "booking-system-c6e4c",
+    storageBucket: "",
+    messagingSenderId: "767495114891"
+};
+firebase.initializeApp(config);
 
 
 
