@@ -139,7 +139,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-
+//Data Indsættelse 
 firebase.database().ref('reservationer').on('value', snapshots => {
     let htmlTemplate = "";
     snapshots.forEach(snapshot => {
@@ -156,7 +156,7 @@ firebase.database().ref('reservationer').on('value', snapshots => {
     document.querySelector(".booking").innerHTML = htmlTemplate;
   });
 
-//BEKRÆFT 
+//BEKRÆFT
 document.getElementById("confirm").addEventListener('click', () => {
     var navn = document.querySelector("#myForm [name=fullname]").value;
     var email = document.querySelector("#myForm [name=email]").value;
