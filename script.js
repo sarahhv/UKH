@@ -139,7 +139,6 @@ var config = {
 };
 firebase.initializeApp(config);
 
-
 firebase.database().ref('reservationer').on('value', snapshots => {
     let htmlTemplate = "";
     snapshots.forEach(snapshot => {
