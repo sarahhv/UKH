@@ -186,11 +186,7 @@ document.getElementById("confirm").addEventListener('click', () => {
     var til = document.getElementById('til').value;
     var dato = document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML;
 
-    if (!navn) {
-        alert("Venligst indtast dit navn og din email");
-    } else if (!email) {
-        alert("Venligst indtast dit navn og din email");
-    } else {
+    if (navn && email) {
         firebase.database().ref('reservationer').push({
             navn: navn,
             email: email,
@@ -206,5 +202,8 @@ document.getElementById("confirm").addEventListener('click', () => {
         document.querySelector("#myForm [name=fullname]").value = "";
         document.querySelector("#myForm [name=email]").value = "";
         document.querySelector("#myForm [name=comment]").value = "";
+        
+    } else {
+        alert("Venligst indtast dit navn og din email");
     }
 });
