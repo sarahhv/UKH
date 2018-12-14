@@ -6,7 +6,7 @@ window.addEventListener('load', function () {
     vanillaCalendar.init({
         disablePastDays: true
     });
-})
+});
 var vanillaCalendar = {
     month: document.querySelectorAll('[data-calendar-area="month"]')[0],
     next: document.querySelectorAll('[data-calendar-toggle="next"]')[0],
@@ -16,19 +16,20 @@ var vanillaCalendar = {
     currentMonth: null,
     currentYear: null,
     activeDates: null,
-    date: new Date,
-    todaysDate: new Date,
+    date: new Date(),
+    todaysDate: new Date(),
     init: function (t) {
         this.currentMonth = this.date.getMonth();
         this.currentYear = this.date.getFullYear();
         this.options = t, this.date.setDate(1), this.createMonth(), this.createListeners();
 
+        /* Herunder sørger for, at ved kalenderens start, sættes dags dato ind i (...)label="picked" */
         var dateOptions = {
             weekday: 'short',
             year: 'numeric',
             month: 'numeric',
             day: 'numeric'
-        }
+        };
         selectedDate = this.todaysDate.toLocaleDateString('da-DK', dateOptions);
         document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = selectedDate;
     },
@@ -37,13 +38,14 @@ var vanillaCalendar = {
         this.next.addEventListener("click", function () {
                 t.clearCalendar();
                 var e = t.date.getMonth() + 1;
-                t.date.setMonth(e), t.createMonth()
+                t.date.setMonth(e), t.createMonth();
             }),
             this.previous.addEventListener("click", function () {
                 t.clearCalendar();
                 var e = t.date.getMonth() - 1;
-                t.date.setMonth(e), t.createMonth()
+                t.date.setMonth(e), t.createMonth();
             }),
+            /* Her er i dag knappen, hvor vi sørger for, at ved klik, sender den markøren (selected) tilbage til dags dato */
             this.today.addEventListener("click", function () {
                 t.clearCalendar();
                 t.date.setMonth(t.currentMonth);
@@ -54,34 +56,36 @@ var vanillaCalendar = {
                     year: 'numeric',
                     month: 'numeric',
                     day: 'numeric'
-                }
+                };
 
-                document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = t.todaysDate.toLocaleDateString('da-DK', dateOptions)
-            })
+                document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = t.todaysDate.toLocaleDateString('da-DK', dateOptions);
+            });
     },
-    createDay: function (t, e, a) {
+    createDay: function (t, e) {
         var n = document.createElement("div"),
             s = document.createElement("span");
         s.innerHTML = t, n.className = "vcal-date", n.setAttribute("data-calendar-date", this.date),
             /* 1 === t && osv. Det der sker i denne sætning er hvis e er = 0 så skal beregningen mellem ? og : udføres, ellers skal det efter : udføres */
-            1 === t && (n.style.marginLeft = 0 === e ? 6 * 14.28 + "%" : 14.28 * (e - 1) + "%"), this.options.disablePastDays && this.date.getTime() <= this.todaysDate.getTime() - 1 ? n.classList.add("vcal-date--disabled") : (n.classList.add("vcal-date--active"), n.setAttribute("data-calendar-status", "active")), this.date.toString() === this.todaysDate.toString() && n.classList.add("vcal-date--today"), n.appendChild(s), this.month.appendChild(n)
+            1 === t && (n.style.marginLeft = 0 === e ? 6 * 14.28 + "%" : 14.28 * (e - 1) + "%"), this.options.disablePastDays && this.date.getTime() <= this.todaysDate.getTime() - 1 ? n.classList.add("vcal-date--disabled") : (n.classList.add("vcal-date--active"), n.setAttribute("data-calendar-status", "active")), this.date.toString() === this.todaysDate.toString() && n.classList.add("vcal-date--today"), n.appendChild(s), this.month.appendChild(n);
     },
+
+    /* Når man har klikket på en dato - skal den vise ny info i "picked" og der skal skiftes til en ny css class, der sørger for en inner-border */
     dateClicked: function () {
         var t = this;
         this.activeDates = document.querySelectorAll('[data-calendar-status="active"]');
         for (var e = 0; e < this.activeDates.length; e++) {
-            this.activeDates[e].addEventListener("click", function (e) {
+            this.activeDates[e].addEventListener("click", function () {
                 var dateString = new Date(this.dataset.calendarDate);
                 var options = {
                     weekday: 'short',
                     year: 'numeric',
                     month: 'numeric',
                     day: 'numeric'
-                }
+                };
                 selectedDate = dateString.toLocaleDateString('da-DK', options);
-                document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = selectedDate, t.removeActiveClass(), this.classList.add("vcal-date--selected")
+                document.querySelectorAll('[data-calendar-label="picked"]')[0].innerHTML = selectedDate, t.removeActiveClass(), this.classList.add("vcal-date--selected");
                 showEvents();
-            })
+            });
         }
     },
     createMonth: function () {
@@ -97,14 +101,14 @@ var vanillaCalendar = {
         this.dateClicked();
     },
     monthsAsString: function (t) {
-        return ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"][t]
+        return ["Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December"][t];
     },
     clearCalendar: function () {
         vanillaCalendar.month.innerHTML = "";
     },
     removeActiveClass: function () {
         for (var t = 0; t < this.activeDates.length; t++)
-            this.activeDates[t].classList.remove("vcal-date--selected")
+            this.activeDates[t].classList.remove("vcal-date--selected");
     }
 };
 /*  Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ */
@@ -202,7 +206,7 @@ document.getElementById("confirm").addEventListener('click', () => {
         document.querySelector("#myForm [name=fullname]").value = "";
         document.querySelector("#myForm [name=email]").value = "";
         document.querySelector("#myForm [name=comment]").value = "";
-        
+
     } else {
         alert("Venligst indtast dit navn og din email");
     }
