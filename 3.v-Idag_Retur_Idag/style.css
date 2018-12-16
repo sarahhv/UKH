@@ -6,16 +6,13 @@
 
 html {
   background-color: #006666;
-  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  max-width: 350px;
-  margin: auto; }
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
 
 .calendar {
   color: #333;
-  width: 90%;
+  width: 90vw;
   margin: 5% auto;
-  text-align: center;
-  text-transform: capitalize; }
+  text-align: center; }
 
 #v-cal {
   background-color: #fff;
@@ -33,8 +30,7 @@ html {
       font-weight: bold;
       text-align: center;
       width: 50%;
-      color: #ffffff;
-      font-size: 1.1rem; }
+      color: #ffffff; }
     #v-cal .vcal-header #vcal-header__label {
       width: 100%; }
     #v-cal .vcal-header .vcal-btn {
@@ -103,7 +99,7 @@ html {
     cursor: not-allowed;
     opacity: .5; }
   #v-cal .testBox {
-    margin: 1.2rem 1rem;
+    margin: 1.2rem 1.4rem;
     text-align: left; }
     #v-cal .testBox input {
       width: 25%; }
@@ -114,11 +110,6 @@ html {
       outline-offset: -2px; }
     #v-cal .testBox .reserver:focus {
       background-color: #006666; }
-
-.dagsEvent {
-  text-align: left;
-  padding: 0.2rem 1rem 0;
-  font-size: 1.3rem; }
 
 /*MODAL BOX*/
 .reservationModal {
@@ -135,17 +126,11 @@ html {
   .reservationModal .indhold {
     padding: 20px;
     border: 1px solid; }
-    .reservationModal .indhold #dato {
-      font-weight: bold;
-      text-transform: capitalize; }
     .reservationModal .indhold p {
       margin: 0.5rem auto; }
-    .reservationModal .indhold .indsatTid {
-      font-weight: bold;
-      display: flex;
-      justify-content: center; }
-      .reservationModal .indhold .indsatTid time {
-        margin: 0 3px; }
+  .reservationModal .book-info time {
+    display: block;
+    font-weight: bold; }
   .reservationModal .fillOut {
     width: 80%;
     padding: 0.7rem;
@@ -156,11 +141,10 @@ html {
     margin: 10px auto;
     resize: none; }
   .reservationModal .confirm {
-    background-color: white;
-    outline: #707070 1px solid;
-    outline-offset: -2px;
+    border-style: none;
+    border: 2px #4d4d4d solid;
     background-color: #fff;
-    padding: 1%;
+    padding: 4px;
     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
   .reservationModal .modalLuk {
     margin: -10px -12px auto auto;

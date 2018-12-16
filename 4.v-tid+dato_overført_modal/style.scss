@@ -15,16 +15,13 @@ sans-serif;
 html {
     background-color: $green;
     font-family: $font-family;
-    max-width: 350px;
-    margin: auto;
 }
 
 .calendar {
     color: #333;
-    width: 90%;
+    width: 90vw;
     margin: 5% auto;
     text-align: center;
-    text-transform: capitalize;
 }
 
 #v-cal {
@@ -46,7 +43,6 @@ html {
             text-align: center;
             width: 50%;
             color: #ffffff;
-            font-size: 1.1rem;
         }
 
         #vcal-header__label {
@@ -144,7 +140,7 @@ html {
     }
 
     .testBox {
-        margin: 1.2rem 1rem;
+        margin: 1.2rem 1.4rem;
         text-align: left;
 
         input {
@@ -164,12 +160,6 @@ html {
     }
 }
 
-.dagsEvent {
-    text-align: left;
-    padding: 0.2rem 1rem 0;
-    font-size: 1.3rem;
-}
-
 /*MODAL BOX*/
 .reservationModal {
     display: none;
@@ -186,11 +176,6 @@ html {
     .indhold {
         padding: 20px;
         border: 1px solid;
-
-        #dato {
-            font-weight: bold;
-            text-transform: capitalize;
-        }
 
         p {
             margin: 0.5rem auto;
@@ -221,11 +206,10 @@ html {
     }
 
     .confirm {
-        background-color: white;
-        outline: #707070 1px solid;
-        outline-offset: -2px;
+        border-style: none;
+        border: 2px #4d4d4d solid;
         background-color: #fff;
-        padding: 1%;
+        padding: 4px;
         font-family: $font-family;
     }
 

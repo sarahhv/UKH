@@ -6,25 +6,18 @@
 }
 
 $green: #006666;
-$font-family: "Segoe UI",
-Roboto,
-Helvetica,
-Arial,
-sans-serif;
+$font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
 html {
     background-color: $green;
     font-family: $font-family;
-    max-width: 350px;
-    margin: auto;
 }
 
 .calendar {
     color: #333;
-    width: 90%;
+    width: 90vw;
     margin: 5% auto;
     text-align: center;
-    text-transform: capitalize;
 }
 
 #v-cal {
@@ -46,7 +39,6 @@ html {
             text-align: center;
             width: 50%;
             color: #ffffff;
-            font-size: 1.1rem;
         }
 
         #vcal-header__label {
@@ -65,7 +57,7 @@ html {
             overflow: visible;
             padding: 0;
             text-align: center;
-
+    
             i {
                 color: white;
             }
@@ -81,7 +73,7 @@ html {
             margin: 2px;
             text-align: center;
             width: 20%;
-        }
+        } 
 
         .vcal-btns:focus {
             background-color: $green;
@@ -109,7 +101,7 @@ html {
     .vcal-body {
         display: flex;
         background-color: rgba(231, 233, 237, .3);
-        flex-wrap: wrap;
+        flex-wrap: wrap
     }
 
     .vcal-date {
@@ -142,9 +134,9 @@ html {
         cursor: not-allowed;
         opacity: .5;
     }
-
+    
     .testBox {
-        margin: 1.2rem 1rem;
+        margin: 1.2rem 1.4rem;
         text-align: left;
 
         input {
@@ -161,13 +153,7 @@ html {
         .reserver:focus {
             background-color: $green;
         }
-    }
-}
-
-.dagsEvent {
-    text-align: left;
-    padding: 0.2rem 1rem 0;
-    font-size: 1.3rem;
+    } 
 }
 
 /*MODAL BOX*/
@@ -186,50 +172,39 @@ html {
     .indhold {
         padding: 20px;
         border: 1px solid;
-
-        #dato {
-            font-weight: bold;
-            text-transform: capitalize;
-        }
-
+    
         p {
             margin: 0.5rem auto;
-        }
-
-        .indsatTid {
-            font-weight: bold;
-            display: flex;
-            justify-content: center;
+          }
+      } 
     
-            time {
-                margin: 0 3px;
-            }
-        }
-    }
-
-    .fillOut {
+        .book-info time {
+        display: block;
+        font-weight: bold;
+      } 
+     
+        .fillOut {
         width: 80%;
         padding: 0.7rem;
         margin: 0.6rem;
         font-family: $font-family;
-    }
-
-    .formular textarea {
+      }
+    
+      .formular textarea {
         display: block;
         margin: 10px auto;
         resize: none;
-    }
-
-    .confirm {
-        background-color: white;
-        outline: #707070 1px solid;
-        outline-offset: -2px;
+      }
+    
+      .confirm {
+        border-style: none;
+        border: 2px #4d4d4d solid;
         background-color: #fff;
-        padding: 1%;
+        padding: 4px;
         font-family: $font-family;
-    }
-
-    .modalLuk {
+      }
+      
+      .modalLuk {
         margin: -10px -12px auto auto;
         background-color: $green;
         color: #fff;
@@ -237,10 +212,10 @@ html {
         padding: 2px 8px;
         font-size: 30px;
         border: none;
-    }
-}
+      }
+  }
 
-#overlay {
+  #overlay {
     position: fixed;
     display: none;
     width: 100%;
@@ -249,7 +224,7 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0,0,0,0.5);
     z-index: 1;
     cursor: pointer;
 }

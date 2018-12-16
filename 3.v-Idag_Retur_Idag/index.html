@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da">
+<html>
 
 <head>
     <meta charset="utf-8" />
@@ -17,10 +17,9 @@
 </head>
 
 <body>
-    <!-- Kalenderen -->
     <main class="calendar">
         <div id="v-cal">
-            <header class="vcal-header">
+            <div class="vcal-header">
                 <button class="vcal-btn" data-calendar-toggle="previous">
                     <i class="fas fa-chevron-left"></i>
                 </button>
@@ -36,7 +35,7 @@
                 <button class="vcal-btns" data-calendar-toggle="today">
                     I dag
                 </button>
-            </header>
+            </div>
 
             <div class="vcal-week">
                 <span>Mon</span>
@@ -55,21 +54,15 @@
                 </div>
             </div>
 
-            <div class="booking">
-
-            </div>
-
             <div class="testBox">
-                Fra: <input type="time" name="time" id="fra">
-                Til: <input type="time" name="time" id="til">
+                Fra: <input type="time" name="time">
+                Til: <input type="time" name="time">
                 <button class="reserver" id="reserver">Reserver</button>
             </div>
         </div>
     </main>
-    <!-- Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ -->
 
-    <!-- Modalbox reservation -->
-    <section class="reservationModal" id="modal">
+    <main class="reservationModal" id="modal">
         <div class="modal-content">
             <article>
                 <header>
@@ -80,31 +73,37 @@
                 <section class="indhold">
                     <div class="book-info">
                         <p>Du er nu I gang med at booke tid til den:</p>
-                        <time id="dato"></time>
-                        <p class="indsatTid">Kl.
-                            <time id="rFra"></time>-
-                            <time id="rTil"></time></p>
+                        <time datetime="">Dag d.dd mån.</time>
+                        <time datetime="">Kl. Tid-Tid</time>
                         <p>Udfyld formen og vi vender tilbage hurtigst muligt med svar</p>
                     </div>
-                    <div class="formular" id="myForm">
-                        <input type="text" class="fillOut" name="fullname" placeholder="Name" id="fillOut"><br>
+                    <form class="formular" id="myForm" action="" method="post">
+                        <input type="text" class="fillOut" name="fullname" placeholder="Name"><br>
                         <input type="text" class="fillOut" name="email" placeholder="Email"><br>
-                        <textarea class="fillOut" name="comment" rows="5" placeholder="Her kan du skrive en besked hvis du har nogen spørgsmål eller tilføjelser til bookningen"></textarea>
-                        <button class="confirm" id="confirm">Bekræft</button>
-                    </div>
+                        <textarea class="fillOut" type="text" name="comment" rows="5" placeholder="Her kan du skrive en besked hvis du har nogen spørgsmål eller tilføjelser til bookningen"></textarea>
+                        <input type="submit" value="Bekræft" class="confirm">
+                    </form>
                 </section>
             </article>
         </div>
-    </section>
+    </main>
 
     <div id="overlay"></div>
 
-    <!-- Firebase library -->
-    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            vanillaCalendar.init({
+                disablePastDays: true
+            });
+        })
+    </script>
+
+    <!-- Kilde til basic kalender https://www.cssscript.com/minimal-inline-calendar-date-picker-vanilla-javascript/ -->
+
     <!-- Jquery library -->
     <script src="jquery-3.3.1.min.js"></script>
     <!-- Eget script -->
-    <script src="script.js"></script>
+    <script src="script.js" type="text/javascript"></script>
 </body>
 
 </html>
